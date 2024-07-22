@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard">
+    <h2>Hello, {{username}}! Let's have some TODOs</h2>
+    <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    <div class="dashboard-container">
+        <div class="col1">
+            {% if not user_todos %}
+                <p>You have no Todos! Create one.</p>
+            {% else %}
+                <ul>
+                    {% for todo in user_todos %}
+                        <li>
+                            <div class="todo-card">
+                                <p class="todo-title"><b>Title: </b>{{todo.title}}</p>
+                                <hr>
+                                <p class="todo-desc">{{todo.description}}</p>
+                                <hr>
+                                <form action="/delete-todo" method="post" class="remove-todo">
+                                    <input type="hidden" name="todo_id" value="{{todo.id}}">
+                                    <button type="submit">Remove</button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="col2">
+            <h2>Create Todo</h2>
+            <form action="" method="post">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Add Todo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

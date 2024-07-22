@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="login-container register-container">
+    <h1>Register</h1>
+    <form action="/register" method="post">
+        <div class="row">
+            <label for="uname">Username</label>
+            <input type="text" name="uname" id="uname" placeholder="Enter Username" required>
+        </div>
+        <div class="row">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter Email" required>    
+        </div>
+        <div class="row">
+            <label for="pass1">Password</label>
+            <input type="password" name="pass1" id="pass1" placeholder="Enter Password" required>    
+        </div>
+        <div class="row">
+            <label for="pass2">Confirm Password</label>
+            <input type="password" name="pass2" id="pass2" placeholder="Enter Confirm Password" required>    
+        </div>
+        <div class="row">
+            <button type="submit">Register</button>
+            <p>Already have an account? <a href="{{ request.url_for('login') }}">Login</a></p>
+        </div>
+        {% if error %}
+            <p class="error">* {{error}}</p>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock content %}
+
+

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="login-container">
+    <h1>Login</h1>
+    <form action="/" method="post">
+        <div class="row">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter Email" required>
+        </div>
+        <div class="row">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter Password" required>    
+        </div>
+        <div class="row">
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="{{ request.url_for('register') }}">Register</a></p>
+        </div>
+        {% if error %}
+            <p class="error">* {{error}}</p>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock content %}
+
+
